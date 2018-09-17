@@ -1,0 +1,28 @@
+{% load static %}
+{% now "Y M d" as current_year %}
+<html lang="pl_PL">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul class="nav-items">
+              <li class="logo"><a href="/">Home</a></li>
+              <li><a href="news.asp">Dodaj użytkownika</a></li>
+              <li><a href="contact.asp">Pełna lista użytkowników</a></li>
+              <li><a href="about.asp">About</a></li>
+            </ul>
+        </nav>
+        <section class="user-list">
+            {% block users %}{% endblock %}
+        </section>
+        <section class="user-info">
+            {% block users_details %}{% endblock %}
+        </section>
+        <footer class="footer">
+            <span class="author">Tomasz Kaszuba  {{ current_year }}</span>
+        </footer>
+    </body>
+</html>

@@ -17,4 +17,4 @@ class User(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=30)
-    permission_level = models.IntegerField(max_length=1)
+    permission_level = models.IntegerField(1)

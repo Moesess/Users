@@ -20,5 +20,5 @@ from users.views import HomeView, UserAdd
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^/user/add/$', UserAdd.as_view(), name='add_user'),
+    url(r'^user/add/$', UserAdd.as_view(), name='add_user'),
 ]

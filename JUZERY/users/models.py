@@ -16,5 +16,6 @@ class User(models.Model):
 
 
 class Group(models.Model):
+    permissions = [for i in range(1, 3))]
     name = models.CharField(max_length=30)
-    permission_level = models.IntegerField(1)
+    permission_level = models.IntegerField(choices=permissions, default=1)

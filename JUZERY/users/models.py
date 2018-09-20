@@ -9,6 +9,7 @@ from django.db import models
 class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     group = models.ForeignKey(
         'Group',
         on_delete=models.CASCADE,
@@ -16,6 +17,9 @@ class User(models.Model):
 
 
 class Group(models.Model):
-    permissions = [for i in range(1, 3))]
+    permissions = [('user', '1'), ('moderator', '2'), ('admin', '3')]
     name = models.CharField(max_length=30)
-    permission_level = models.IntegerField(choices=permissions, default=1)
+    permission_level = models.CharField(max_length=30, choices=permissions, default=1)
+
+    def __str__(self):
+        return self.name

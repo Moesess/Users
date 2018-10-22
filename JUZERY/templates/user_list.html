@@ -1,15 +1,16 @@
 {% extends "homepage.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block users_details %}
-    {% for user in user.values %}
-        <li>{{ user.first_name }} {{ user.last_name }}
-            {% for group in group.values %}
-                {% if group.id == user.group_id %}
-                    {{ group.name }}
-                    {{ group.permission_level }}
-                {% endif %}
-            {% endfor %}
-        </li>
-    {% endfor %}
-
+    <ul>
+        {% for user in user.values %}
+            <li>{{ user.first_name }} {{ user.last_name }}
+                {% for group in group.values %}
+                    {% if group.id == user.group_id %}
+                        {{ group.name }}
+                        {{ group.permission_level }}
+                    {% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

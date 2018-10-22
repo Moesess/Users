@@ -47,7 +47,6 @@ class UserAdd(CreateView):
 class UserList(ListView):
     template_name = "user_list.html"
     model = User
-    model = Group
 
     def get_context_data(self, *args, **kwargs):
         context = {'title': "Users List",

@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from users.views import HomeView, UserAdd, GroupAdd
+from users.views import HomeView, UserAdd, GroupAdd, UserList
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^user/add/$', UserAdd.as_view(), name='add_user'),
     url(r'^group/add/$', GroupAdd.as_view(), name='add_group'),
+    url(r'^user/list/$', UserList.as_view(), name='list_user'),
 ]

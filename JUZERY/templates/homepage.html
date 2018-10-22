@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
-        <title>{{ title }}</title>
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <nav class="navbar">
@@ -13,7 +13,7 @@
               <li class="logo"><a href="{% url 'home' %}">Home</a></li>
               <li><a href="{% url 'add_user' %}">Dodaj użytkownika</a></li>
               <li><a href="{% url 'add_group' %}">Dodaj grupę</a></li>
-              <li><a href="#">Pełna lista użytkowników</a></li>
+              <li><a href="{% url 'list_user' %}">Pełna lista użytkowników</a></li>
               <li class="login"><a href="#">Zaloguj się</a></li>
               <li class="login"><a href="#">Zarejestruj się</a></li>
             </ul>

@@ -12,6 +12,7 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     group = models.ForeignKey(
         'Group',
+        related_name="group",
         on_delete=models.CASCADE,
     )
 

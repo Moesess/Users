@@ -1,6 +1,8 @@
 {% extends "homepage.html" %}
+{% block title %}{{ title }}{% endblock %}
 {% block users_details %}
     <form method="post">
+        {{ fields }}
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Dodaj">

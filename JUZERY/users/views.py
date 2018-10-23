@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView
 from models import User, Group
 from django.shortcuts import render_to_response
 # Create your views here.
@@ -55,3 +55,12 @@ class UserList(ListView):
         return context
 
 
+class Details(DetailView):
+    template_name = "details.html"
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = {'title': User.first_name + " details",
+                   'user': User.objects.all(),
+                   'group': Group.objects.all()}
+        return context

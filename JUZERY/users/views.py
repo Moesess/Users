@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.views.generic import TemplateView, CreateView, ListView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView
 from models import User, Group
+from django.urls import reverse_lazy
 from django.shortcuts import render_to_response
 # Create your views here.
 
@@ -64,3 +65,15 @@ class Details(DetailView):
                    'user': User.objects.all(),
                    'group': Group.objects.all()}
         return context
+
+
+class UserDelete(DeleteView):
+    template_name = "confirm_delete.html"
+    model = User
+    success_url = reverse_lazy('home')
+
+
+class GroupDelete(DeleteView):
+    template_name = "confirm_delete.html"
+    model = Group
+    success_url = reverse_lazy("home")

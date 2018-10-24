@@ -6,29 +6,37 @@ body{
 .user-list {
     width: 15%;
     height: 100%;
-    background-color: blue;
+    background-color: #AAAAAA;
     float: left;
     padding: 20px;
     box-sizing: border-box;
 }
 .user-info{
     width: 85%;
-    background-color: yellow;
+    background-color: #EEEEEE;
     height: 100%;
     float: left;
     box-sizing: border-box;
     padding: 20px;
 }
-.user-table {
+/*---TABLES---*/
+.user-table, .group-table {
     text-align: center;
     border: solid 1px black;
+    float: left;
+    margin: 5px;
 }
-.user-table tr, td, th{
+.user-table tr, td, th, .group-table tr, td, th{
     border: solid 1px black;
 }
-
+.text-bold{
+    font-weight: bold;
+}
+.table-buttons{
+    margin: 2px;
+}
 /*---NAV_BAR---*/
-.navbar{
+.nav_bar{
     width: 100%;
     float: left;
 }

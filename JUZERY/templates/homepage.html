@@ -3,12 +3,13 @@
 <html lang="pl_PL">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
         <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar">
+        <nav class="nav_bar">
             <ul class="nav-items">
               <li class="logo"><a href="{% url 'home' %}">Home</a></li>
               <li><a href="{% url 'add_user' %}">Dodaj użytkownika</a></li>
@@ -19,10 +20,10 @@
             </ul>
         </nav>
         <section class="user-list">
-            {% block users %}{% endblock %}
+            {% block left %}{% endblock %}
         </section>
         <section class="user-info">
-            {% block users_details %}{% endblock %}
+            {% block right %}{% endblock %}
         </section>
         <footer class="footer">
             <span class="author">Tomasz Kaszuba &copy {{ current_year }}</span>

@@ -1,0 +1,12 @@
+{% extends "homepage.html" %}
+
+{% block right %}
+    <h4>Chcesz usunąć
+        {{ user.name_accusative }}{{ group.name_accusative }}:
+        <span class="text-bold"> {{ group.name }}{{ user.first_name }} {{ user.last_name }}</span>
+    </h4>
+    <form method="post">{% csrf_token %}
+        <p>Jesteś pewien?</p>
+        <input class="btn btn-danger" type="submit" value="Tak, usuń">
+    </form>
+{% endblock %}

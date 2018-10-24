@@ -1,10 +1,10 @@
 {% extends "homepage.html" %}
 {% block title %}{{ title }}{% endblock %}
-{% block users_details %}
+{% block right %}
     <form method="post">
         {{ fields }}
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Dodaj">
+        <input class="btn btn-success" type="submit" value="Dodaj">
     </form>
 {% endblock %}

@@ -7,6 +7,9 @@ from django.db import models
 
 
 class User(models.Model):
+    name_singular = "Użytkownik"
+    name_accusative = "Użytkownika"
+    name_plural = "Użytkownicy"
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
@@ -18,6 +21,9 @@ class User(models.Model):
 
 
 class Group(models.Model):
+    name_singular = "Grupa"
+    name_accusative = "Grupę"
+    name_plural = "Grupy"
     permissions = [('user', '1'), ('moderator', '2'), ('admin', '3')]
     name = models.CharField(max_length=30)
     permission_level = models.CharField(max_length=30, choices=permissions, default=1)

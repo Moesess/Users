@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from users.views import HomeView, UserAdd, GroupAdd, UserList
+from users.views import HomeView, UserAdd, GroupAdd, UserList, UserDelete, GroupDelete
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^user/add/$', UserAdd.as_view(), name='add_user'),
     url(r'^group/add/$', GroupAdd.as_view(), name='add_group'),
     url(r'^user/list/$', UserList.as_view(), name='list_user'),
+    url(r'^user/delete/(?P<name>[-\w]+)/(?P<pk>[0-9]+)/$', UserDelete.as_view(), name='delete_user'),
+    url(r'^group/delete/(?P<name>[-\w]+)/(?P<pk>[0-9]+)/$', GroupDelete.as_view(), name='delete_group'),
 ]

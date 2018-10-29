@@ -1,0 +1,9 @@
+{% extends "homepage.html" %}
+{% block right %}
+    <form method="post">
+        {% csrf_token %}
+        {{ fields }}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success" value="Zapisz zmiany">
+    </form>
+{% endblock %}

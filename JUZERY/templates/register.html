@@ -1,0 +1,13 @@
+{% extends "homepage.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block right %}
+    <div class="container">
+        <h3>Zarejestruj się</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ fields }}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-success" value="Zarejestruj się">
+        </form>
+    </div>
+{% endblock %}

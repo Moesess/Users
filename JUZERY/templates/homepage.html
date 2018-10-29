@@ -16,7 +16,7 @@
               <li><a href="{% url 'add_group' %}">Dodaj grupę</a></li>
               <li><a href="{% url 'list_user' %}">Pełna lista użytkowników</a></li>
               <li class="login"><a href="#">Zaloguj się</a></li>
-              <li class="login"><a href="#">Zarejestruj się</a></li>
+              <li class="login"><a href="{% url 'register' %}">Zarejestruj się</a></li>
             </ul>
         </nav>
         <section class="user-list">
@@ -26,7 +26,15 @@
             {% block right %}{% endblock %}
         </section>
         <footer class="footer">
-            <span class="author">Tomasz Kaszuba &copy {{ current_year }}</span>
+            <span class="author">Tomasz Kaszuba &copy | {{ current_year }} | <span id="clock"></span></span>
         </footer>
     </body>
+    <script type="text/javascript">
+        function clock(){
+            var s = new Date();
+            var field = document.getElementById("clock");
+            field.innerHTML = s.getHours()+":"+s.getMinutes()+":"+s.getSeconds();
+        }
+        setInterval(clock, 1);
+    </script>
 </html>

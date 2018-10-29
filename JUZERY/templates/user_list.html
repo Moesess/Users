@@ -26,7 +26,7 @@
                     {% endfor %}
                     <td>
                         <div class="btn-group table-buttons" role="group" aria-label="Basic example">
-                          <a href="" class="btn btn-sm btn-info">Edytuj</a>
+                          <a href="/user/edit/{{ user.first_name }}/{{ user.id }}" class="btn btn-sm btn-info">Edytuj</a>
                           <a href="/user/delete/{{ user.first_name }}/{{ user.id }}" class="btn btn-sm btn-danger">Usuń</a>
                         </div>
                     </td>
@@ -51,7 +51,7 @@
                     <td>{{ group.permission_level }}</td>
                     <td>
                         <div class="btn-group table-buttons" role="group" aria-label="Basic example">
-                          <a href="" class="btn btn-sm btn-info">Edytuj</a>
+                          <a href="/group/edit/{{ group.name }}/{{ group.id }}" class="btn btn-sm btn-info">Edytuj</a>
                           <a href="/group/delete/{{ group.name }}/{{ group.id }}" class="btn btn-sm btn-danger">Usuń</a>
                         </div>
                     </td>

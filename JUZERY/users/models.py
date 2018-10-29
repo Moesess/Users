@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django import forms
 
 # Create your models here.
 
@@ -15,9 +16,21 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     group = models.ForeignKey(
         'Group',
+        default='1',
         related_name="group",
         on_delete=models.CASCADE,
     )
+
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+        fields = ('first_name', 'last_name', 'password')
 
 
 class Group(models.Model):

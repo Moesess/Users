@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView, UpdateView
 from models import User, Group
 from django.urls import reverse_lazy
-from django.shortcuts import render_to_response
+from forms import UserForm
+from django.views.generic.edit import FormView
 # Create your views here.
 
 
@@ -46,6 +47,9 @@ class UserAdd(CreateView):
 
 
 class UserList(ListView):
+    """
+    Widok odpowiadający za wyświetlanie listy użytkowników
+    """
     template_name = "user_list.html"
     model = User
 
@@ -57,6 +61,9 @@ class UserList(ListView):
 
 
 class Details(DetailView):
+    """
+    Widok odpowiadający za wyświetlanie detali modelu
+    """
     template_name = "details.html"
     model = User
 
@@ -68,12 +75,48 @@ class Details(DetailView):
 
 
 class UserDelete(DeleteView):
+    """
+    Widok odpowiadający za usuwanie Użytkownika
+    """
     template_name = "confirm_delete.html"
     model = User
     success_url = reverse_lazy('home')
 
 
 class GroupDelete(DeleteView):
+    """
+    Widok odpowiadający za usuwanie Grupy
+    """
     template_name = "confirm_delete.html"
     model = Group
     success_url = reverse_lazy("home")
+
+
+class GroupEdit(UpdateView):
+    model = Group
+    fields = ['name', 'permission_level']
+    template_name = "edit_form.html"
+    success_url = reverse_lazy("list_user")
+
+
+class UserEdit(UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'password', 'group']
+    template_name = "edit_form.html"
+    success_url = reverse_lazy("list_user")
+
+
+class RegisterPanel(CreateView):
+    model = User
+    form_class = UserForm
+    template_name = "register.html"
+    success_url = "/"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RegisterPanel, self).get_context_data(**kwargs)
+        context.update({'title': "Register"})
+        return context
+
+    # def form_valid(self, form):
+    #     form.save()
+    #     return super(RegisterPanel, self).form_valid(form)

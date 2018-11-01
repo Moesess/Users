@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView, UpdateView
 from models import User, Group
 from django.urls import reverse_lazy
-from forms import UserForm
+from forms import LoginForm, UserForm
 from django.views.generic.edit import FormView
+from errors import *
 # Create your views here.
 
 
@@ -27,7 +28,8 @@ class GroupAdd(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(GroupAdd, self).get_context_data(**kwargs)
-        context.update({'title': "Add Group"})
+        context.update({'title': "Add Group",
+                        'name_accusative': "Grupę"})
         return context
 
 
@@ -37,12 +39,13 @@ class UserAdd(CreateView):
     """
     template_name = "add_form.html"
     model = User
-    fields = ['first_name', 'last_name', 'password', 'group']
+    fields = ['login','first_name', 'last_name', 'password', 'group']
     success_url = '/'
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserAdd, self).get_context_data(**kwargs)
-        context.update({'title': "Add User"})
+        context.update({'title': "Add User",
+                        'name_accusative': "Użytkownika"})
         return context
 
 
@@ -93,6 +96,9 @@ class GroupDelete(DeleteView):
 
 
 class GroupEdit(UpdateView):
+    """
+    Widok odpowiadający za edytowanie grupy
+    """
     model = Group
     fields = ['name', 'permission_level']
     template_name = "edit_form.html"
@@ -100,13 +106,19 @@ class GroupEdit(UpdateView):
 
 
 class UserEdit(UpdateView):
+    """
+    Widok odpowiadający za Edytowanie użytkownika
+    """
     model = User
-    fields = ['first_name', 'last_name', 'password', 'group']
+    fields = ['login', 'first_name', 'last_name', 'password', 'group']
     template_name = "edit_form.html"
     success_url = reverse_lazy("list_user")
 
 
 class RegisterPanel(CreateView):
+    """
+    Widok odpowiadający za generowanie Formularza rejestracji i dodawania użytkownika
+    """
     model = User
     form_class = UserForm
     template_name = "register.html"
@@ -120,3 +132,25 @@ class RegisterPanel(CreateView):
     # def form_valid(self, form):
     #     form.save()
     #     return super(RegisterPanel, self).form_valid(form)
+
+
+class LoginPanel(FormView):
+    """
+    Widok odpowiadający za generowanie formularza Logowania i za samo logowanie
+    """
+    model = User
+    form_class = LoginForm
+    template_name = "login.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(LoginPanel, self).get_context_data(**kwargs)
+        context.update({'title': "Login"})
+        return context
+
+    def form_valid(self, form):
+        print "gut"
+        return super(LoginPanel, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print "nicht gut"
+        return super(LoginPanel, self).form_invalid(form)

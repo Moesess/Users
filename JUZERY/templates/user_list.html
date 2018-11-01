@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>Lp.</th>
+                <th>Login</th>
                 <th>Imie</th>
                 <th>Nazwisko</th>
                 <th>Grupa</th>
@@ -16,6 +17,7 @@
             {% for user in user.values %}
                 <tr>
                     <td>{{ forloop.counter }}.</td>
+                    <td><a href="#">{{ user.login }}</a></td>
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     {% for group in group.values %}

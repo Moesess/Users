@@ -11,9 +11,10 @@ class User(models.Model):
     name_singular = "Użytkownik"
     name_accusative = "Użytkownika"
     name_plural = "Użytkownicy"
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    login = models.CharField(max_length=30, unique=True, null=False)
+    first_name = models.CharField(max_length=50, null=False)
+    last_name = models.CharField(max_length=50, null=False)
+    password = models.CharField(max_length=50, null=False)
     group = models.ForeignKey(
         'Group',
         default='1',

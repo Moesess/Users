@@ -1,11 +1,11 @@
 {% extends "homepage.html" %}
 {% block title %}{{ title }}{% endblock %}
+
 {% block right %}
-    <h3>Dodaj {{ name_accusative }}</h3>
-    <form method="post">
-        {{ fields }}
+    <h3>Zaloguj się</h3>
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input class="btn btn-success" type="submit" value="Dodaj">
+        <input type="submit" class="btn btn-success" value="Zaloguj się">
     </form>
 {% endblock %}

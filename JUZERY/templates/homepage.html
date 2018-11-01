@@ -15,16 +15,18 @@
               <li><a href="{% url 'add_user' %}">Dodaj użytkownika</a></li>
               <li><a href="{% url 'add_group' %}">Dodaj grupę</a></li>
               <li><a href="{% url 'list_user' %}">Pełna lista użytkowników</a></li>
-              <li class="login"><a href="#">Zaloguj się</a></li>
+              <li class="login"><a href="{% url 'login' %}">Zaloguj się</a></li>
               <li class="login"><a href="{% url 'register' %}">Zarejestruj się</a></li>
             </ul>
         </nav>
-        <section class="user-list">
-            {% block left %}{% endblock %}
-        </section>
-        <section class="user-info">
-            {% block right %}{% endblock %}
-        </section>
+        <div class="site-container">
+            <section class="user-list">
+                {% block left %}{% endblock %}
+            </section>
+            <section class="user-info">
+                {% block right %}{% endblock %}
+            </section>
+        </div>
         <footer class="footer">
             <span class="author">Tomasz Kaszuba &copy | {{ current_year }} | <span id="clock"></span></span>
         </footer>
@@ -33,8 +35,18 @@
         function clock(){
             var s = new Date();
             var field = document.getElementById("clock");
-            field.innerHTML = s.getHours()+":"+s.getMinutes()+":"+s.getSeconds();
+            var minutes = s.getMinutes();
+            var hours = s.getHours();
+            var seconds = s.getSeconds();
+
+            if(hours<10)
+                hours = "0" + hours;
+            if(minutes<10)
+                minutes = "0" + minutes;
+            if(seconds<10)
+                seconds = "0" + seconds;
+            field.innerHTML = hours+":"+minutes+":"+seconds;
         }
-        setInterval(clock, 1);
+        setInterval(clock, 100);
     </script>
 </html>
